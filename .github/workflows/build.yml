@@ -15,10 +15,6 @@ jobs:
     name: Compilar aplicação Android
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: tvos-launcher
-
     steps:
       - name: Obter código
         uses: actions/checkout@v4
@@ -32,22 +28,21 @@ jobs:
       - name: Configurar Android SDK
         uses: android-actions/setup-android@v4
         with:
-          cmdline-tools-version: 15859902
           accept-android-sdk-licenses: true
           packages: platform-tools
 
-      - name: Verificar projeto Gradle
+      - name: Verificar pasta do projeto
         run: |
-          echo "Conteúdo da pasta:"
+          echo "Pastas existentes:"
           ls -la
-          echo "Verificar ficheiros Gradle:"
-          test -f settings.gradle.kts || test -f settings.gradle
-          test -f build.gradle.kts || test -f build.gradle
+          echo "Conteúdo de tvos-launcher:"
+          ls -la tvos-launcher
 
       - name: Preparar Gradle
         uses: gradle/actions/setup-gradle@v4
 
       - name: Compilar APK Release
+        working-directory: tvos-launcher
         run: gradle assembleRelease --no-daemon
 
       - name: Publicar APK
@@ -57,4 +52,3 @@ jobs:
           path: tvos-launcher/app/build/outputs/apk/release/*.apk
           if-no-files-found: error
           retention-days: 7
-
