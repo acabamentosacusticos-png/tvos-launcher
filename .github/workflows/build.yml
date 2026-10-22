@@ -31,24 +31,23 @@ jobs:
           accept-android-sdk-licenses: true
           packages: platform-tools
 
-      - name: Verificar pasta do projeto
-        run: |
-          echo "Pastas existentes:"
-          ls -la
-          echo "Conteúdo de tvos-launcher:"
-          ls -la tvos-launcher
-
       - name: Preparar Gradle
         uses: gradle/actions/setup-gradle@v4
 
+      - name: Verificar projeto
+        run: |
+          echo "Verificar ficheiros Gradle"
+          test -f settings.gradle.kts
+          test -f build.gradle.kts
+          test -d app
+
       - name: Compilar APK Release
-        working-directory: tvos-launcher
         run: gradle assembleRelease --no-daemon
 
       - name: Publicar APK
         uses: actions/upload-artifact@v4
         with:
           name: tv-launcher-apk
-          path: tvos-launcher/app/build/outputs/apk/release/*.apk
+          path: app/build/outputs/apk/release/*.apk
           if-no-files-found: error
           retention-days: 7
