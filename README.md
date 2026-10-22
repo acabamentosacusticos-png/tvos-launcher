@@ -78,6 +78,18 @@ otimizar.bat 192.168.1.50 --listar # ver as apps instaladas
 
 Para desativar apps que não usas, escreve o nome do pacote em `lista-debloat.txt` (vem vazio, por isso nada é desativado sem tu escolheres) e corre o script outra vez. Se não tiveres a certeza do que podes desativar, envia-me a lista e digo-te o que é seguro.
 
+## Arrancar direto no launcher
+
+Para a TV abrir logo no TV Launcher quando a ligas (e ao carregar em Home), ele tem de ser o ecrã inicial, e não apenas uma app da lista. Na Google TV o sistema protege o launcher original, por isso usa a opção que o desativa:
+
+```
+instalar.bat IP:PORTA app-release.apk --substituir-launcher
+```
+
+Depois reinicia a TV. É reversível a qualquer momento com `restaurar`. As Definições ficam sempre no dock do launcher, por isso nunca perdes o acesso a elas.
+
+Se aparecer um erro ao desativar o launcher original, a tua TV bloqueia essa operação: envia-me a mensagem exata.
+
 ## Voltar atrás
 
 ```

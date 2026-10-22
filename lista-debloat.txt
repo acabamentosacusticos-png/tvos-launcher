@@ -1,0 +1,11 @@
+# Apps a desativar com otimizar (uma por linha). Linhas com # são ignoradas.
+# Por defeito está vazio, por isso nada é desativado.
+#
+# Como usar:
+#   1. Corre "./otimizar.sh IP_DA_TV --listar" para ver os nomes dos pacotes.
+#   2. Escreve aqui o nome de cada app que não usas, por exemplo:
+#        com.exemplo.appquenaousas
+#   3. Corre otimizar outra vez.
+#
+# É reversível: o restaurar reativa tudo o que estiver nesta lista.
+# Evita desativar apps do sistema que não conheces (Definições, Play Store, serviços Google).
